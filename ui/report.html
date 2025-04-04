@@ -1,0 +1,61 @@
+<!-- report.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Report an Issue | Fix My City</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="bg-gradient-to-br from-purple-50 to-pink-50 font-sans text-gray-800">
+
+  <!-- Header -->
+  <header class="bg-white/70 backdrop-blur-lg p-4 shadow-md flex justify-between items-center">
+    <h1 class="text-xl font-bold text-purple-700">📍 Fix My City</h1>
+    <a href="index.html" class="bg-purple-600 text-white px-4 py-2 rounded-full hover:bg-purple-700 transition">← Back to Home</a>
+  </header>
+
+  <!-- Main Form -->
+  <main class="max-w-2xl mx-auto mt-10 bg-white shadow-xl rounded-xl p-8">
+    <h2 class="text-3xl font-bold mb-6 text-center">📢 Report a Local Issue</h2>
+
+    <form id="reportForm" class="space-y-6">
+      <div>
+        <label class="block font-medium">Upload Photo</label>
+        <input type="file" id="photo" accept="image/*" class="mt-2 block w-full border rounded px-3 py-2" required />
+        <img id="preview" class="mt-4 max-h-48 hidden rounded-lg shadow" />
+      </div>
+
+      <div>
+        <label class="block font-medium">Your Location</label>
+        <input type="text" id="location" placeholder="Auto-detecting..." class="mt-2 block w-full border rounded px-3 py-2 bg-gray-100" readonly />
+      </div>
+
+      <div>
+        <label class="block font-medium">Issue Type</label>
+        <select id="issueType" class="mt-2 block w-full border rounded px-3 py-2">
+          <option value="pothole">Pothole</option>
+          <option value="garbage">Garbage</option>
+          <option value="streetlight">Streetlight Outage</option>
+          <option value="water">Water Leakage</option>
+          <option value="others">Others</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block font-medium">Description</label>
+        <textarea id="description" rows="3" placeholder="Describe the issue..." class="mt-2 block w-full border rounded px-3 py-2"></textarea>
+      </div>
+
+      <button type="submit" class="w-full bg-purple-600 text-white py-3 rounded-full hover:bg-purple-700 transition-all">
+        🚀 Submit Report
+      </button>
+    </form>
+  </main>
+
+  <!-- JS -->
+  <script src="firebase-config.js"></script>
+  <script src="js/report.js"></script>
+</body>
+</html>
