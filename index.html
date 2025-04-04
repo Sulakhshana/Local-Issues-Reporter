@@ -1,0 +1,68 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Local Issue Reporter</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-blue-100 text-gray-800">
+
+  <!-- Header -->
+  <header class="flex justify-between items-center px-6 py-4 shadow bg-white">
+    <h1 class="text-3xl font-bold text-blue-600 animate-fade-in">🛠️ Local Issue Reporter</h1>
+    <a href="report.html" class="bg-blue-600 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-700 transition">Report an Issue</a>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="text-center px-6 py-20 relative overflow-hidden">
+    <h2 class="text-4xl md:text-6xl font-bold mb-4 animate-slide-up">Your Voice Can Fix The City</h2>
+    <p class="text-lg md:text-xl mb-8 text-gray-700">Report local problems. Let your neighborhood be heard. Track real-time updates.</p>
+    <img src="https://www.svgrepo.com/show/331983/map-location-pin.svg" alt="map" class="w-32 mx-auto opacity-80 animate-bounce-slow">
+    
+    <!-- Background Blob -->
+    <div class="absolute top-0 left-0 w-full h-full -z-10 opacity-10">
+      <img src="https://www.transparenttextures.com/patterns/cubes.png" class="w-full h-full object-cover" />
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="px-6 py-16 bg-white">
+    <h3 class="text-3xl font-bold text-center mb-10">How It Works</h3>
+    <div class="grid md:grid-cols-3 gap-8 text-center">
+      <div>
+        <img src="https://www.svgrepo.com/show/306503/camera.svg" class="w-16 mx-auto mb-4">
+        <h4 class="font-semibold text-xl">1. Report</h4>
+        <p>Take a photo and describe the issue</p>
+      </div>
+      <div>
+        <img src="https://www.svgrepo.com/show/316263/map-pin.svg" class="w-16 mx-auto mb-4">
+        <h4 class="font-semibold text-xl">2. Locate</h4>
+        <p>Pin the problem on a live map</p>
+      </div>
+      <div>
+        <img src="https://www.svgrepo.com/show/311290/upvote.svg" class="w-16 mx-auto mb-4">
+        <h4 class="font-semibold text-xl">3. Upvote</h4>
+        <p>Others can vote, and authorities get notified</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Live Map Preview -->
+  <section class="px-6 py-16 bg-blue-50 text-center">
+    <h3 class="text-3xl font-bold mb-4">See What’s Happening Around You</h3>
+    <p class="mb-6">Explore ongoing issues in your locality with live pins</p>
+    <div class="w-full h-80 bg-gray-300 rounded-lg shadow-inner flex items-center justify-center text-gray-600">
+      Live Map Coming Soon 🗺️
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="text-center text-sm py-4 text-gray-500 bg-white shadow-inner">
+    &copy; 2025 Local Issue Reporter | Built by Sulakhshana
+  </footer>
+
+</body>
+</html>
