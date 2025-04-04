@@ -4,6 +4,7 @@ Even when reported, authorities ignore them unless they get multiple complaints.
 People need a simple way to report and track local issues.
 💡 Solution:
  A community-driven platform where:
+ 
  ✅ Citizens can report local issues by uploading photos & details.
  
  ✅ Other users can upvote issues to bring attention.
