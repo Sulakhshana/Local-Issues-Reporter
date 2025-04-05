@@ -1,65 +1,43 @@
 import { db } from "../firebase-config.js";
-import {
-  collection,
-  getDocs,
-  doc,
-  updateDoc
-} from "https://www.gstatic.com/firebasejs/10.11.1/firebase-firestore.js";
+import { collection, getDocs } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-firestore.js";
 
 let map;
 
-window.initMap = async function () {
+async function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: 28.6139, lng: 77.2090 },
     zoom: 12,
   });
 
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition((position) => {
-      const userPos = {
-        lat: position.coords.latitude,
-        lng: position.coords.longitude,
-      };
-      map.setCenter(userPos);
-    });
-  }
-
   const querySnapshot = await getDocs(collection(db, "issues"));
   querySnapshot.forEach((docSnap) => {
     const data = docSnap.data();
-    const position = parseCoords(data.location);
-    if (!position) return;
+    const coords = parseCoords(data.location);
+    if (!coords) return;
 
-    const marker = new google.maps.Marker({ position, map });
+    const marker = new google.maps.Marker({
+      position: coords,
+      map,
+    });
 
-    const contentString = `
-      <div style="max-width: 250px">
-        <img src="${data.imageUrl}" width="100%" style="border-radius:6px;"><br>
+    const popup = `
+      <div style="max-width: 200px;">
+        <img src="${data.imageUrl}" style="width:100%; border-radius:6px;" />
         <strong>${data.issueType}</strong><br>
-        ${data.description}<br>
-        <span class="badge ${data.status === 'resolved' ? 'resolved' : 'pending'}">
-          ${data.status}
-        </span><br>
-        👍 Upvotes: <span id="vote-count-${docSnap.id}">${data.upvotes}</span><br>
-        <button class="upvote-button" onclick="upvoteIssue('${docSnap.id}')">Upvote</button>
+        <small>${data.description}</small><br>
+        <span>Status: ${data.status}</span><br>
+        👍 Upvotes: ${data.upvotes || 0}
       </div>
     `;
-
-    const infowindow = new google.maps.InfoWindow({ content: contentString });
+    const infowindow = new google.maps.InfoWindow({ content: popup });
     marker.addListener("click", () => infowindow.open(map, marker));
   });
-};
-
-window.upvoteIssue = async function (id) {
-  const issueRef = doc(db, "issues", id);
-  const voteSpan = document.getElementById(`vote-count-${id}`);
-  const currentVotes = parseInt(voteSpan.innerText || "0", 10);
-  await updateDoc(issueRef, { upvotes: currentVotes + 1 });
-  voteSpan.innerText = currentVotes + 1;
-};
-
-function parseCoords(coordStr) {
-  const [lat, lng] = coordStr.split(",").map(Number);
-  return isNaN(lat) || isNaN(lng) ? null : { lat, lng };
 }
+
+function parseCoords(str) {
+  const [lat, lng] = str.split(',').map(Number);
+  return (!isNaN(lat) && !isNaN(lng)) ? { lat, lng } : null;
+}
+
+window.initMap = initMap;
 
