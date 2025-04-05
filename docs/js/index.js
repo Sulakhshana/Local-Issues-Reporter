@@ -1,73 +1,65 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
-import {
-  getFirestore,
-  collection,
-  getDocs
-} from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
+import { db } from "../firebase-config.js";
+import { collection, getDocs, doc, updateDoc } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-firestore.js";
 
-import { firebaseConfig } from "../firebase-config.js";
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+let map;
 
-// 🔹 Load Google Map and display issue markers
-window.initMap = async function () {
-  // Default to Delhi if location access fails
-  const defaultCenter = { lat: 28.6448, lng: 77.216721 };
-
-  const map = new google.maps.Map(document.getElementById("map"), {
+async function initMap() {
+  map = new google.maps.Map(document.getElementById("map"), {
+    center: { lat: 28.6139, lng: 77.2090 },
     zoom: 12,
-    center: defaultCenter
   });
 
-  // Try to get current location
   if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        const userLocation = {
-          lat: position.coords.latitude,
-          lng: position.coords.longitude,
-        };
-        map.setCenter(userLocation);
-      },
-      () => {
-        console.warn("Geolocation failed or denied. Using default location.");
-      }
-    );
+    navigator.geolocation.getCurrentPosition((pos) => {
+      const userPos = {
+        lat: pos.coords.latitude,
+        lng: pos.coords.longitude,
+      };
+      map.setCenter(userPos);
+    });
   }
 
-  // Fetch issues from Firestore
   const querySnapshot = await getDocs(collection(db, "issues"));
   querySnapshot.forEach((docSnap) => {
     const data = docSnap.data();
-    const [lat, lng] = data.location.split(',').map(Number);
+    const position = parseCoords(data.location);
+    if (!position) return;
+
+    const marker = new google.maps.Marker({
+      position,
+      map,
+    });
 
     const contentString = `
-      <div style="max-width: 250px;">
-        <img src="${data.imageUrl}" style="width:100%; height:120px; object-fit:cover; border-radius:5px; margin-bottom:8px;" />
-        <p><strong>Type:</strong> ${data.issueType}</p>
-        <p><strong>Description:</strong> ${data.description}</p>
-        <p><strong>Status:</strong> 
-          <span style="padding: 3px 6px; border-radius: 4px; color: white; background: ${data.status === 'Resolved' ? '#28a745' : '#ffc107'};">
-            ${data.status}
-          </span>
-        </p>
-        <p><strong>Upvotes:</strong> ${data.upvotes || 0}</p>
+      <div style="max-width: 250px">
+        <img src="${data.imageUrl}" width="100%" style="border-radius:6px;"><br>
+        <strong>${data.issueType}</strong><br>
+        ${data.description}<br>
+        <span class="badge ${data.status === 'resolved' ? 'resolved' : 'pending'}">
+          ${data.status}
+        </span><br>
+        👍 Upvotes: <span id="vote-count-${docSnap.id}">${data.upvotes}</span><br>
+        <button class="upvote-button" onclick="upvoteIssue('${docSnap.id}')">Upvote</button>
       </div>
     `;
 
-    const marker = new google.maps.Marker({
-      position: { lat, lng },
-      map: map,
-      icon: "https://maps.google.com/mapfiles/ms/icons/red-dot.png"
-    });
-
-    const infowindow = new google.maps.InfoWindow({
-      content: contentString,
-    });
-
-    marker.addListener("click", () => {
-      infowindow.open(map, marker);
-    });
+    const infowindow = new google.maps.InfoWindow({ content: contentString });
+    marker.addListener("click", () => infowindow.open(map, marker));
   });
+}
+
+window.upvoteIssue = async function (id) {
+  const issueRef = doc(db, "issues", id);
+  const voteSpan = document.getElementById(`vote-count-${id}`);
+  const currentVotes = parseInt(voteSpan.innerText || "0", 10);
+  await updateDoc(issueRef, { upvotes: currentVotes + 1 });
+  voteSpan.innerText = currentVotes + 1;
 };
+
+function parseCoords(coordStr) {
+  const [lat, lng] = coordStr.split(",").map(Number);
+  return isNaN(lat) || isNaN(lng) ? null : { lat, lng };
+}
+
+window.initMap = initMap;
 
