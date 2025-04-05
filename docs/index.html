@@ -3,35 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FixMyTown</title>
+    <title>FixMyTown - Crowdsourced Civic Issue Reporter</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <!-- Navigation Bar -->
-    <nav class="navbar">
-        <div class="nav-logo">FixMyTown</div>
-        <ul class="nav-links">
-            <li><a href="#">Home</a></li>
-            <li><a href="report.html">Report Issue</a></li>
-        </ul>
-    </nav>
+    <div class="navbar">
+        <h1>FixMyTown</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="report.html">Report Issue</a>
+        </nav>
+    </div>
 
-    <!-- Hero Section with Glassmorphic Effect -->
+    <!-- Hero Section -->
     <header class="hero-section">
-        <h1 class="site-title">FixMyTown</h1>
+        <div class="hero-content">
+            <h1 class="site-title">FixMyTown</h1>
+            <p>Empowering Communities</p>
+            <p>Report, view, and track local civic issues with ease.</p>
+        </div>
     </header>
 
-    <!-- Main Content -->
-    <section class="main-content">
-        <h2>Empowering Communities</h2>
-        <p>Report, view, and track local civic issues with ease. Be the change you wish to see!</p>
-    </section>
-
-    <section class="map-section">
+    <!-- Map Section -->
+    <div class="map-container">
         <h2>🌍 Real-Time Map</h2>
-        <p>View all active civic problems on a live map.</p>
-    </section>
+        <p>View all active civic problems on a live map</p>
+        <div id="map"></div> 
+    </div>
 
+    <script src="index.js"></script>
 </body>
 </html>
+
