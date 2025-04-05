@@ -3,42 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>FixMyTown - Crowdsourced Civic Issue Reporter</title>
+  <title>FixMyTown</title>
   <link rel="stylesheet" href="style.css" />
+  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY" defer></script>
+  <script src="firebase-config.js" defer></script>
+  <script src="js/index.js" defer></script>
 </head>
 <body>
-
-  <!-- Navigation Bar -->
-  <div class="navbar">
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="report.html">Report Issue</a>
-    </nav>
+  <div class="nav">
+    <button onclick="location.href='index.html'">Home</button>
+    <button onclick="location.href='report.html'">Report Issue</button>
   </div>
-
-  <!-- Hero Section -->
-  <header class="hero-section">
-    <div class="hero-content">
-      <h1 class="site-title typing-effect">FixMyTown</h1>
-      <p>Empowering Communities</p>
-      <p>Report, view, and track local civic issues with ease.</p>
-    </div>
-  </header>
-
-  <!-- Map Section -->
-  <div class="map-container">
-    <h2>🌍 Real-Time Map</h2>
-    <p>View all active civic problems on a live map</p>
-    <div id="map"></div>
-  </div>
-
-  <!-- Google Maps Script (your API key included) -->
-  <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBKtjmNmwyfEKWLGORdWj8wzFAcIYZGyaw&callback=initMap">
-  </script>
-
-  <!-- Firebase + App Logic -->
-  <script type="module" src="index.js"></script>
+  <h1 class="main-heading"><span id="typing-text">FixMyTown</span></h1>
+  <div id="map"></div>
 </body>
 </html>
 
