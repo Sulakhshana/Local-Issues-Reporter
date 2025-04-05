@@ -1,69 +1,56 @@
 document.addEventListener("DOMContentLoaded", () => {
   const reportForm = document.getElementById("reportForm");
+  const detectBtn = document.getElementById("detectLocationBtn");
+  const locationInput = document.getElementById("location");
+  const imageInput = document.getElementById("image");
 
   reportForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    const issueType = document.getElementById("issueType").value.trim();
-    const description = document.getElementById("description").value.trim();
-    const location = document.getElementById("location").value.trim();
-    const imageFile = document.getElementById("image").files[0];
+    const issueType = document.getElementById("issueType").value;
+    const description = document.getElementById("description").value;
+    const location = locationInput.value;
+    const file = imageInput.files[0];
 
-    if (!issueType || !description || !location || !imageFile) {
-      alert("Please fill in all fields and upload an image.");
+    if (!file) {
+      alert("Please upload an image.");
       return;
     }
 
-    try {
-      // Convert image to base64
-      const imageBase64 = await toBase64(imageFile);
+    const imageData = await toBase64(file);
 
-      // Create issue object
-      const newIssue = {
-        id: Date.now(),
-        issueType,
-        description,
-        location,
-        imageUrl: imageBase64,
-        status: "pending",
-        upvotes: 0,
-        createdAt: new Date().toISOString(),
-      };
+    const issue = {
+      id: Date.now(),
+      type: issueType,
+      description,
+      location,
+      image: imageData,
+      upvotes: 0,
+      status: "Pending"
+    };
 
-      // Save issue to localStorage
-      const issues = JSON.parse(localStorage.getItem("issues") || "[]");
-      issues.push(newIssue);
-      localStorage.setItem("issues", JSON.stringify(issues));
+    const existingIssues = JSON.parse(localStorage.getItem("issues") || "[]");
+    existingIssues.push(issue);
+    localStorage.setItem("issues", JSON.stringify(existingIssues));
 
-      alert("✅ Issue reported successfully!");
-      window.location.href = "index.html";
-    } catch (err) {
-      console.error("Error reporting issue:", err);
-      alert("⚠️ Failed to report issue. Please try again.");
-    }
+    alert("✅ Issue reported successfully!");
+    reportForm.reset();
   });
 
-  // Detect current location
-  document.querySelector(".detect-location a").addEventListener("click", (e) => {
-    e.preventDefault();
+  if (detectBtn) {
+    detectBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition((pos) => {
+          const coords = `${pos.coords.latitude}, ${pos.coords.longitude}`;
+          locationInput.value = coords;
+        });
+      } else {
+        alert("❌ Geolocation is not supported by your browser.");
+      }
+    });
+  }
 
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (pos) => {
-          const coords = `${pos.coords.latitude},${pos.coords.longitude}`;
-          document.getElementById("location").value = coords;
-        },
-        (err) => {
-          alert("⚠️ Location access denied or failed.");
-          console.error("Geolocation error:", err);
-        }
-      );
-    } else {
-      alert("❌ Geolocation not supported by your browser.");
-    }
-  });
-
-  // Convert File to base64
   function toBase64(file) {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
