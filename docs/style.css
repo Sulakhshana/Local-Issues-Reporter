@@ -1,75 +1,132 @@
 /* General Reset */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Arial', sans-serif;
 }
 
 /* Navbar */
 .navbar {
-    background: linear-gradient(to right, #1e3c72, #2a5298);
-    padding: 15px;
-    text-align: center;
-    color: white;
-    font-size: 24px;
-    font-weight: bold;
+  background: linear-gradient(to right, #1e3c72, #2a5298);
+  padding: 15px;
+  text-align: center;
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.navbar nav {
+  margin-top: 10px;
+}
+
+.navbar nav a {
+  color: white;
+  margin: 0 10px;
+  text-decoration: none;
+  font-weight: normal;
+}
+
+/* Hero Section */
+.hero-section {
+  height: 70vh;
+  background: url('https://images.unsplash.com/photo-1497436072909-60f360e1d4b1?auto=format&fit=crop&w=1050&q=80') no-repeat center center/cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  text-align: center;
+}
+
+.hero-content {
+  color: white;
+  padding: 40px;
+}
+
+.site-title {
+  font-size: 3.5rem;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 10px;
+}
+
+/* Glass Effect */
+.glass-effect {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  padding: 30px;
+  max-width: 600px;
+}
+
+/* Map Section */
+.map-container {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+#map {
+  width: 90%;
+  height: 400px;
+  margin: 20px auto;
+  border-radius: 10px;
+  background-color: #e0e0e0;
 }
 
 /* Report Form Container */
 #report-form-container {
-    max-width: 450px;
-    margin: 50px auto;
-    padding: 20px;
-    background: rgba(255, 255, 255, 0.95);
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    text-align: center;
+  max-width: 450px;
+  margin: 50px auto;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  text-align: center;
 }
 
 /* Form Fields */
 #report-form-container label {
-    display: block;
-    margin: 10px 0 5px;
-    font-weight: bold;
-    text-align: left;
+  display: block;
+  margin: 10px 0 5px;
+  font-weight: bold;
+  text-align: left;
 }
 
 #report-form-container select,
 #report-form-container textarea,
 #report-form-container input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-bottom: 10px;
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
 }
 
 /* Detect Location */
 .detect-location {
-    font-size: 14px;
-    color: #555;
+  font-size: 14px;
+  color: #555;
 }
 
 .detect-location a {
-    color: #d63384;
-    text-decoration: none;
-    font-weight: bold;
+  color: #d63384;
+  text-decoration: none;
+  font-weight: bold;
 }
 
 /* Submit Button */
 #submitIssue {
-    width: 100%;
-    padding: 10px;
-    background: #7b2cbf;
-    color: white;
-    border: none;
-    font-size: 16px;
-    border-radius: 5px;
-    cursor: pointer;
+  width: 100%;
+  padding: 10px;
+  background: #7b2cbf;
+  color: white;
+  border: none;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 #submitIssue:hover {
-    background: #5a189a;
+  background: #5a189a;
 }
 
