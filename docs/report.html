@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Report Issue - FixMyTown</title>
 
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="report-style.css" />
 </head>
 <body>
 
@@ -13,17 +13,18 @@
     <div class="nav-logo">FixMyTown</div>
     <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
-      <li><a href="report.html">Report Issue</a></li>
+      <li><a href="report.html" class="active">Report Issue</a></li>
     </ul>
   </nav>
 
-  <main class="form-section">
-    <h1>📢 Report a Civic Issue</h1>
+  <main class="form-container">
+    <h1 class="form-title">📢 Report a Civic Issue</h1>
 
-    <form id="reportForm">
-      <label for="issueType">Issue Type:</label>
+    <form id="reportForm" class="issue-form">
+
+      <label for="issueType">Issue Type</label>
       <select id="issueType" required>
-        <option value="">Select issue</option>
+        <option value="">Select an issue</option>
         <option value="Garbage">Garbage</option>
         <option value="Pothole">Pothole</option>
         <option value="Streetlight">Streetlight</option>
@@ -31,17 +32,19 @@
         <option value="Other">Other</option>
       </select>
 
-      <label for="description">Description:</label>
-      <textarea id="description" rows="4" required></textarea>
+      <label for="description">Description</label>
+      <textarea id="description" rows="4" placeholder="Describe the issue..." required></textarea>
 
-      <label for="location">Location (lat, lng):</label>
-      <input type="text" id="location" placeholder="Detect or enter manually" required />
-      <button id="detectLocationBtn">📍 Detect Location</button>
+      <label for="location">Location (latitude, longitude)</label>
+      <div class="location-row">
+        <input type="text" id="location" placeholder="Detect or enter manually" required />
+        <button id="detectLocationBtn">📍 Detect</button>
+      </div>
 
-      <label for="image">Upload Image:</label>
+      <label for="image">Upload Image</label>
       <input type="file" id="image" accept="image/*" required />
 
-      <button type="submit">🚀 Submit Report</button>
+      <button type="submit" class="submit-btn">🚀 Submit Report</button>
     </form>
   </main>
 
