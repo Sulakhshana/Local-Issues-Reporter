@@ -1,21 +1,19 @@
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js"; // ✅ use CDN import
-import { getStorage } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-storage.js"; // ✅ for image uploads
-import { getFirestore } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js"; // ✅ for database
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
+import { getStorage } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-storage.js";
+import { getFirestore } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-firestore.js";
 
-// Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyD_lajqIE4NSUaN4sGYCWLPrKJiT0nDHg0",
-  authDomain: "fixmycity-1e70e.firebaseapp.com",
-  projectId: "fixmycity-1e70e",
-  storageBucket: "fixmycity-1e70e.appspot.com",  // 👈 fixed typo here
-  messagingSenderId: "658505949766",
-  appId: "1:658505949766:web:06c3f379f9b52888426047"
+  apiKey: "AIzaSyD0...",
+  authDomain: "civic-issue-reporter.firebaseapp.com",
+  projectId: "civic-issue-reporter",
+  storageBucket: "civic-issue-reporter.appspot.com",
+  messagingSenderId: "415273797037",
+  appId: "1:415273797037:web:304c4d1625c32d3282e6fd",
+  measurementId: "G-W1TXWGVB3C"
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
+const storage = getStorage(app);
+const db = getFirestore(app);
 
-// Export Firestore & Storage
-export const db = getFirestore(app);
-export const storage = getStorage(app);
+export { storage, db };
