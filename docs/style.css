@@ -122,10 +122,14 @@ body {
 
 #map {
   width: 100%;
-  height: 400px; /* or 500px, as you like */
+  height: 400px; /* Ensure height is set */
   border-radius: 10px;
   margin-top: 20px;
+  
+  /* Debugging border */
+  border: 2px solid red; 
 }
+
 
 h2 {
   font-size: 2rem;
