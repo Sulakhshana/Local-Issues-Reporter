@@ -1,30 +1,17 @@
 window.onload = function () {
-  const map = L.map('map').setView([28.6139, 77.2090], 11);
+  const map = L.map('map').setView([28.6139, 77.2090], 11); // Default center
 
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '© OpenStreetMap contributors'
   }).addTo(map);
 
-  // Function to add marker
-  function addMarker({ latitude, longitude, description, image, upvotes = 0, status }) {
-    const popupContent = `
-      <div style="max-width: 200px;">
-        <img src="${image}" style="width: 100%; border-radius: 5px;" />
-        <p><strong>Description:</strong> ${description}</p>
-        <p><strong>Status:</strong> <span style="color: ${status === 'Resolved' ? 'green' : 'red'};">${status}</span></p>
-        <p><strong>Upvotes:</strong> ${upvotes}</p>
-      </div>
-    `;
-    L.marker([latitude, longitude]).addTo(map).bindPopup(popupContent);
-  }
-
-  // Add two demo markers
+  // Show hardcoded sample issues
   const demoIssues = [
     {
       latitude: 28.6139,
       longitude: 77.2090,
       description: "Pothole on main road near Connaught Place",
-      image: "https://i.imgur.com/yW2W9SC.jpg",
+      imageUrl: "https://i.imgur.com/yW2W9SC.jpg",
       upvotes: 23,
       status: "Unresolved"
     },
@@ -32,33 +19,32 @@ window.onload = function () {
       latitude: 28.6448,
       longitude: 77.2167,
       description: "Garbage not collected near India Gate",
-      image: "https://i.imgur.com/BJgqVCl.jpg",
+      imageUrl: "https://i.imgur.com/BJgqVCl.jpg",
       upvotes: 45,
       status: "Resolved"
     }
   ];
-  demoIssues.forEach(addMarker);
 
-  // Load all submitted issues from localStorage
-  const savedIssues = JSON.parse(localStorage.getItem("issues") || "[]");
+  demoIssues.forEach(data => addMarker(data.latitude, data.longitude, data.description, data.imageUrl, data.upvotes, data.status));
 
-  savedIssues.forEach((issue) => {
-    // Safely parse coordinates
-    if (issue.location) {
-      const [latStr, lngStr] = issue.location.split(",").map(val => val.trim());
-      const latitude = parseFloat(latStr);
-      const longitude = parseFloat(lngStr);
-      if (!isNaN(latitude) && !isNaN(longitude)) {
-        addMarker({
-          latitude,
-          longitude,
-          description: issue.description,
-          image: issue.image,
-          upvotes: issue.upvotes,
-          status: issue.status
-        });
-      }
-    }
+  // 🔥 Load user-reported issues from localStorage
+  const storedIssues = JSON.parse(localStorage.getItem("issues") || "[]");
+
+  storedIssues.forEach(issue => {
+    const [lat, lng] = issue.location.split(',').map(coord => parseFloat(coord.trim()));
+    addMarker(lat, lng, issue.description, issue.image, issue.upvotes, issue.status);
   });
+
+  function addMarker(lat, lng, description, imageUrl, upvotes, status) {
+    const popupContent = `
+      <div style="max-width: 200px;">
+        <img src="${imageUrl}" alt="Issue Image" style="width: 100%; height: auto; border-radius: 5px;" />
+        <p><strong>Description:</strong> ${description}</p>
+        <p><strong>Status:</strong> <span style="color: ${status === 'Resolved' ? 'green' : 'red'};">${status}</span></p>
+        <p><strong>Upvotes:</strong> ${upvotes}</p>
+      </div>
+    `;
+    L.marker([lat, lng]).addTo(map).bindPopup(popupContent);
+  }
 };
 
