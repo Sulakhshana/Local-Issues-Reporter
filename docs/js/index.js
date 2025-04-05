@@ -86,5 +86,45 @@ document.addEventListener('DOMContentLoaded', () => {
       .addTo(map);
   });
 
-  // Hand
+  // Handle upvote button clicks
+  document.addEventListener('click', (e) => {
+    if (e.target.classList.contains('upvote-btn')) {
+      const issueId = e.target.getAttribute('data-id');
+      
+      // Update the upvote count in the UI
+      const upvoteCount = e.target.nextElementSibling;
+      upvoteCount.textContent = parseInt(upvoteCount.textContent) + 1;
+
+      // Prevent multiple votes from the same browser using localStorage
+      const upvotedIssues = JSON.parse(localStorage.getItem('upvotedIssues') || '[]');
+      if (!upvotedIssues.includes(issueId)) {
+        upvotedIssues.push(issueId);
+        localStorage.setItem('upvotedIssues', JSON.stringify(upvotedIssues));
+      }
+    }
+  });
+});
+
+// Helper function to parse coordinates from a string
+function parseCoords(str) {
+  if (!str || typeof str !== 'string') return null;
+  
+  const [lat, lng] = str.split(',').map(Number);
+  
+  return !isNaN(lat) && !isNaN(lng) ? { lat, lng } : null;
+}
+
+// Helper function to get color based on issue status
+function getStatusColor(status) {
+  switch (status) {
+    case 'Resolved':
+      return '#4CAF50'; // Green
+    case 'In Progress':
+      return '#FFC107'; // Yellow
+    case 'Pending':
+      return '#F44336'; // Red
+    default:
+      return '#2196F3'; // Blue (default)
+  }
+}
 
