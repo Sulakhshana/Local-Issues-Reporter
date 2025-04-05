@@ -10,8 +10,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const issueType = document.getElementById("issueType").value;
     const description = document.getElementById("description").value;
     const location = locationInput.value;
-
     const file = imageInput.files[0];
+
     if (!file) {
       alert("Please upload an image.");
       return;
@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
     localStorage.setItem("issues", JSON.stringify(existingIssues));
 
     alert("✅ Issue reported successfully!");
-    window.location.href = "index.html";
+    reportForm.reset();
   });
 
   if (detectBtn) {
@@ -42,11 +42,11 @@ document.addEventListener("DOMContentLoaded", () => {
       e.preventDefault();
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition((pos) => {
-          const coords = `${pos.coords.latitude},${pos.coords.longitude}`;
+          const coords = `${pos.coords.latitude}, ${pos.coords.longitude}`;
           locationInput.value = coords;
         });
       } else {
-        alert("❌ Geolocation not supported.");
+        alert("❌ Geolocation is not supported by your browser.");
       }
     });
   }
@@ -60,4 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
+
+
 
