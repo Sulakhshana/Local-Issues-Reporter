@@ -1,1 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Local Issue Reporter</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+  <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+  <!-- Header -->
+  <header class="bg-blue-700 text-white shadow-md">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+      <h1 class="text-xl font-bold">Crowdsourced Civic Issue Reporter</h1>
+      <nav>
+        <a href="index.html" class="px-4 py-2 text-white hover:underline">Home</a>
+        <a href="report.html" class="px-4 py-2 text-white hover:underline">Report Issue</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="bg-gradient-to-r from-blue-500 to-purple-500 text-white py-20 text-center">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="text-4xl font-bold mb-4">Empowering Communities</h2>
+      <p class="text-lg">Report, view, and track local civic issues with ease. Be the change you wish to see!</p>
+    </div>
+  </section>
+
+  <!-- Map Preview Section -->
+  <section class="relative z-10 px-6 py-20 bg-gradient-to-r from-blue-100 to-purple-100 text-center">
+    <h3 class="text-3xl font-bold mb-6">🌍 Real-Time Map</h3>
+    <p class="mb-8 text-gray-700">View all active civic problems on a live map</p>
+    <div id="map" class="w-full h-96 rounded-xl shadow-lg"></div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-white text-center py-6">
+    <p>&copy; 2025 Local Issue Reporter. Made with ❤️ by Sulakhshana</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
+  <script type="module" src="js/index.js"></script>
+</body>
+</html>
 
