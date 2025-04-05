@@ -1,19 +1,24 @@
 import { db } from "../firebase-config.js";
-import { collection, getDocs, doc, updateDoc } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-firestore.js";
+import {
+  collection,
+  getDocs,
+  doc,
+  updateDoc
+} from "https://www.gstatic.com/firebasejs/10.11.1/firebase-firestore.js";
 
 let map;
 
-async function initMap() {
+window.initMap = async function () {
   map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: 28.6139, lng: 77.2090 },
     zoom: 12,
   });
 
   if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition((pos) => {
+    navigator.geolocation.getCurrentPosition((position) => {
       const userPos = {
-        lat: pos.coords.latitude,
-        lng: pos.coords.longitude,
+        lat: position.coords.latitude,
+        lng: position.coords.longitude,
       };
       map.setCenter(userPos);
     });
@@ -25,10 +30,7 @@ async function initMap() {
     const position = parseCoords(data.location);
     if (!position) return;
 
-    const marker = new google.maps.Marker({
-      position,
-      map,
-    });
+    const marker = new google.maps.Marker({ position, map });
 
     const contentString = `
       <div style="max-width: 250px">
@@ -46,7 +48,7 @@ async function initMap() {
     const infowindow = new google.maps.InfoWindow({ content: contentString });
     marker.addListener("click", () => infowindow.open(map, marker));
   });
-}
+};
 
 window.upvoteIssue = async function (id) {
   const issueRef = doc(db, "issues", id);
@@ -61,5 +63,4 @@ function parseCoords(coordStr) {
   return isNaN(lat) || isNaN(lng) ? null : { lat, lng };
 }
 
-window.initMap = initMap;
 
