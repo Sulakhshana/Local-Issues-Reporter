@@ -1,48 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>FixMyTown - Crowdsourced Civic Issue Reporter</title>
-    
-    <!-- Mapbox CSS -->
-    <link href="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.css" rel="stylesheet" />
-    
-    <!-- Your styles -->
-    <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FixMyTown - Crowdsourced Civic Issue Reporter</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-    <!-- Navigation Bar -->
-    <div class="navbar">
-        <h1>FixMyTown</h1>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="report.html">Report Issue</a>
-        </nav>
+  <!-- Navigation Bar -->
+  <div class="navbar">
+    <h1>FixMyTown</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="report.html">Report Issue</a>
+    </nav>
+  </div>
+
+  <!-- Hero Section -->
+  <header class="hero-section">
+    <div class="hero-content glass-effect">
+      <h1 class="site-title">FixMyTown</h1>
+      <p>Empowering Communities</p>
+      <p>Report, view, and track local civic issues with ease.</p>
     </div>
+  </header>
 
-    <!-- Hero Section -->
-    <header class="hero-section">
-        <div class="hero-content">
-            <h1 class="site-title">FixMyTown</h1>
-            <p>Empowering Communities</p>
-            <p>Report, view, and track local civic issues with ease.</p>
-        </div>
-    </header>
+  <!-- Map Section -->
+  <div class="map-container">
+    <h2>🌍 Real-Time Map</h2>
+    <p>View all active civic problems on a live map</p>
+    <div id="map"></div>
+  </div>
 
-    <!-- Map Section -->
-    <div class="map-container">
-        <h2>🌍 Real-Time Map</h2>
-        <p>View all active civic problems on a live map</p>
-        <div id="map"></div> 
-    </div>
-
-    <!-- Mapbox JS -->
-    <script src="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js"></script>
-
-    <!-- Your map logic -->
-    <script src="index.js"></script>
+  <script src="index.js"></script>
 </body>
 </html>
 
