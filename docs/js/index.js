@@ -1,15 +1,14 @@
-// index.js
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
+import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-firestore.js";
+import { firebaseConfig } from "../firebase-config.js";
 
-import { db } from "../firebase-config.js";
-import {
-  collection,
-  getDocs
-} from "https://www.gstatic.com/firebasejs/10.11.1/firebase-firestore.js";
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
 let map;
 
-async function initMap() {
-  // Initialize the map centered on Delhi
+window.initMap = async function () {
   map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: 28.6139, lng: 77.2090 },
     zoom: 12,
@@ -48,14 +47,11 @@ async function initMap() {
   } catch (error) {
     console.error("Error loading issues:", error);
   }
-}
+};
 
 function parseCoords(str) {
   if (!str || typeof str !== "string") return null;
   const [lat, lng] = str.split(",").map(Number);
   return (!isNaN(lat) && !isNaN(lng)) ? { lat, lng } : null;
 }
-
-// Required by Google Maps API callback
-window.initMap = initMap;
 
