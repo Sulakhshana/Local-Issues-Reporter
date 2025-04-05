@@ -1,46 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Report an Issue - FixMyTown</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Report an Issue - FixMyTown</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-    <div class="navbar">
-        <h1>FixMyTown</h1>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="report.html">Report Issue</a>
-        </nav>
-    </div>
+  <div class="navbar">
+    <h1>FixMyTown</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="report.html">Report Issue</a>
+    </nav>
+  </div>
 
-    <div id="report-form-container">
-        <h2>📝 Report an Issue</h2>
+  <div id="report-form-container">
+    <h2>📝 Report an Issue</h2>
 
-        <label for="issueType">Issue Type</label>
-        <select id="issueType">
-            <option>Pothole</option>
-            <option>Garbage Dump</option>
-            <option>Streetlight Issue</option>
-            <option>Other</option>
-        </select>
+    <label for="issueType">Issue Type</label>
+    <select id="issueType">
+      <option>Pothole</option>
+      <option>Garbage Dump</option>
+      <option>Streetlight Issue</option>
+      <option>Other</option>
+    </select>
 
-        <label for="description">Description</label>
-        <textarea id="description" placeholder="Briefly describe the issue..."></textarea>
+    <label for="description">Description</label>
+    <textarea id="description" placeholder="Briefly describe the issue..."></textarea>
 
-        <label for="uploadPhoto">Upload Photo</label>
-        <input type="file" id="uploadPhoto">
+    <label for="uploadPhoto">Upload Photo</label>
+    <input type="file" id="uploadPhoto">
 
-        <label for="location">Location</label>
-        <input type="text" id="location" placeholder="Enter or allow location access">
-        <p class="detect-location">📍 <a href="#">Detect My Location</a></p>
+    <label for="location">Location</label>
+    <input type="text" id="location" placeholder="Enter or allow location access">
+    <p class="detect-location">📍 <a href="#">Detect My Location</a></p>
 
-        <button id="submitIssue">Submit Issue</button>
-    </div>
+    <button id="submitIssue">Submit Issue</button>
+  </div>
 
-    <script src="report.js"></script>
+  <script src="report.js"></script>
 </body>
 </html>
-
