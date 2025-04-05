@@ -1,53 +1,59 @@
-/* General Styling */
+/* Original Styling */
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
   margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #ffffff;
+  color: #000;
 }
 
-.navbar {
-  background: #1d4ed8;
-  padding: 15px;
+.nav {
   display: flex;
-  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem;
 }
 
-.nav-logo {
+button {
+  padding: 10px 20px;
+  background: #2563eb;
+  border: none;
   color: white;
-}
-
-.nav-links a {
-  color: white;
-}
-
-.hero-section {
-  height: 50vh;
-}
-
-.main-content {
-  text-align: center;
-}
-
-/* Map styling */
-/* Map styling */
-#map {
-  width: 100%;
-  height: 400px; /* Set height for the map */
-  border-radius: 10px;
-}
-
-/* Marker styling */
-.marker {
-  width: 20px;
-  height: 20px;
-  background-color: red; /* Default color */
-  border-radius: 50%;
-  border: 2px solid white;
-  cursor: pointer;
-}
-
-/* Popup content styling */
-.map-popup img {
-  width: 100%;
+  font-weight: 600;
   border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
 }
+
+button:hover {
+  background: #1d4ed8;
+}
+
+form {
+  max-width: 600px;
+  margin: 2rem auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background: #f1f5f9;
+  padding: 2rem;
+  border-radius: 8px;
+}
+
+input, select, textarea {
+  padding: 10px;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.detect-location a {
+  color: #2563eb;
+}
+
+/* Added Styles for Map Feature */
+#map {
+  width: calc(100% - (2rem)); /* Adjust width to fit within section */
+  height: calc(400px); /* Ensure height remains consistent */
+}
+.marker{
+border-radius...
+
