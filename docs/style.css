@@ -1,3 +1,4 @@
+/* General Styling */
 body {
   font-family: Arial, sans-serif;
   background-color: #f4f4f4;
@@ -6,6 +7,7 @@ body {
   text-align: center;
 }
 
+/* Navigation Bar */
 .navbar {
   background: #1d4ed8;
   padding: 15px 20px;
@@ -36,22 +38,40 @@ body {
   font-weight: bold;
 }
 
+/* Hero Section */
 .hero-section {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 50vh;
-  background: linear-gradient(135deg, #3b82f6, #9333ea);
+  background: url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
+  position: relative;
 }
 
+/* Dark overlay over background image */
+.hero-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+/* Glassmorphic Title */
 .site-title {
   font-size: 5rem;
   font-weight: bold;
   color: white;
+  text-align: center;
   padding: 20px 40px;
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
   border-radius: 10px;
+  z-index: 2;
+  position: relative;
 }
 
 #typing-text {
@@ -59,36 +79,51 @@ body {
   overflow: hidden;
   border-right: 3px solid white;
   white-space: nowrap;
-  animation: typing 4s steps(10) infinite, blink 0.75s step-end infinite;
+  animation: typing 4s steps(15, end) infinite, blink 0.75s step-end infinite;
 }
 
+/* Typing animation */
 @keyframes typing {
-  0% { width: 0; }
-  50% { width: 10ch; }
-  100% { width: 0; }
+  0% {
+    width: 0;
+  }
+  50% {
+    width: 100%;
+  }
+  100% {
+    width: 0;
+  }
 }
 
 @keyframes blink {
-  50% { border-color: transparent; }
+  0%, 100% {
+    border-color: transparent;
+  }
+  50% {
+    border-color: white;
+  }
 }
 
+/* Main Content */
 .main-content {
   margin: 30px auto;
   max-width: 800px;
+  text-align: center;
 }
 
 .map-section {
-  margin: 30px auto;
-  max-width: 900px;
+  margin-top: 40px;
   padding: 20px;
   background: #e2e8f0;
   border-radius: 10px;
+  max-width: 800px;
+  margin: auto;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
 }
 
-#map {
-  height: 400px;
-  width: 100%;
-  border-radius: 10px;
-  margin-top: 20px;
+h2 {
+  font-size: 2rem;
+  color: #1e3a8a;
 }
+
 
