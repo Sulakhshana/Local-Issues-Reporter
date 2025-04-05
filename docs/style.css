@@ -1,100 +1,95 @@
+/* General Styling */
 body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
   margin: 0;
   padding: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background: #f4f4f4;
-  overflow: hidden;
+  text-align: center;
+}
+
+/* Navigation Bar */
+.navbar {
+  background: #1d4ed8;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+}
+
+.nav-logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.nav-links li {
+  display: inline;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+}
+
+/* Hero Section */
+.hero-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40vh;
+  background: linear-gradient(135deg, #3b82f6, #9333ea);
+}
+
+/* Glassmorphic Title */
+.site-title {
+  font-size: 4rem;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+  padding: 20px;
+
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 10px;
+  padding: 20px 40px;
+  display: inline-block;
+}
+
+/* Main Content */
+.main-content {
+  margin: 30px auto;
+  max-width: 800px;
+  text-align: center;
+}
+
+/* Map Section */
+.map-section {
+  margin-top: 40px;
+  padding: 20px;
+  background: #e2e8f0;
+  border-radius: 10px;
+  max-width: 800px;
+  margin: auto;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 #map {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100vh;
-  width: 100vw;
-  z-index: 0;
+  height: 400px;
+  width: 100%;
+  border-radius: 10px;
+  margin-top: 20px;
 }
 
-.nav {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  display: flex;
-  flex-direction: column;
-  z-index: 2;
-}
-
-.nav button {
-  margin-bottom: 10px;
-  padding: 10px 20px;
-  border: none;
-  background: rgba(255, 255, 255, 0.3);
-  color: #000;
-  border-radius: 8px;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  cursor: pointer;
-  font-weight: bold;
-  transition: 0.3s;
-}
-
-.nav button:hover {
-  background: rgba(255, 255, 255, 0.6);
-}
-
-.main-heading {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 2;
-  font-size: 3rem;
-  background: rgba(255, 255, 255, 0.3);
-  padding: 20px 40px;
-  border-radius: 16px;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-  color: #000;
-}
-
-#typing-text::after {
-  content: "|";
-  animation: blink 0.8s infinite;
-}
-
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
-}
-
-.badge {
-  padding: 4px 10px;
-  border-radius: 12px;
-  font-size: 0.8rem;
-  color: white;
-  display: inline-block;
-  margin-top: 5px;
-}
-
-.badge.pending {
-  background-color: orange;
-}
-
-.badge.resolved {
-  background-color: green;
-}
-
-.upvote-button {
-  margin-top: 8px;
-  padding: 6px 12px;
-  background: #007bff;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-.upvote-button:hover {
-  background: #0056b3;
+h2 {
+  font-size: 2rem;
+  color: #1e3a8a;
 }
 
