@@ -1,21 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>FixMyTown</title>
-    <link rel="stylesheet" href="style.css" />
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBKtjmNmwyfEKWLGORdWj8wzFAcIYZGyaw
-&callback=initMap" defer></script>
-    <script src="firebase-config.js" type="module" defer></script>
-    <script src="js/index.js" type="module" defer></script>
-  </head>
-  <body>
-    <div class="nav">
-      <button onclick="location.href='index.html'">Home</button>
-      <button onclick="location.href='report.html'">Report Issue</button>
-    </div>
-    <h1 class="main-heading"><span id="typing-text">FixMyTown</span></h1>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FixMyTown</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&callback=initMap" defer></script>
+  <script src="firebase-config.js" defer></script>
+  <script src="js/index.js" defer></script>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="nav-logo">FixMyTown</div>
+    <ul class="nav-links">
+      <li><a href="#">Home</a></li>
+      <li><a href="report.html">Report Issue</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero Section with Glassmorphic Effect -->
+  <header class="hero-section">
+    <h1 class="site-title">FixMyTown</h1>
+  </header>
+
+  <!-- Main Content -->
+  <section class="main-content">
+    <h2>Empowering Communities</h2>
+    <p>Report, view, and track local civic issues with ease. Be the change you wish to see!</p>
+  </section>
+
+  <!-- Map Section -->
+  <section class="map-section">
+    <h2>🌍 Real-Time Map</h2>
+    <p>View all active civic problems on a live map.</p>
     <div id="map"></div>
-  </body>
+  </section>
+
+</body>
 </html>
