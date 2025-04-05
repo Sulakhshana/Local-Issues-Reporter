@@ -7,15 +7,6 @@
   
   <!-- CSS -->
   <link rel="stylesheet" href="style.css" />
-
-  <!-- Firebase Config -->
-  <script src="firebase-config.js" defer></script>
-
-  <!-- Google Maps API (only once!) -->
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBKtjmNmwyfEKWLGORdWj8wzFAcIYZGyaw" async defer></script>
-
-  <!-- Your JS file -->
-  <script src="js/index.js" defer></script>
 </head>
 <body>
 
@@ -45,7 +36,9 @@
     <div id="map"></div>
   </section>
 
+  <!-- Firebase + Google Maps API (with callback) -->
+  <script type="module" src="js/index.js"></script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"></script>
 </body>
 </html>
 
-</html>
