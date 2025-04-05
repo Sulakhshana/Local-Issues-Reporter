@@ -1,20 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>FixMyTown</title>
-  <link rel="stylesheet" href="style.css" />
-  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&callback=initMap" defer></script>
-  <script src="firebase-config.js" defer></script>
-  <script src="js/index.js" defer></script>
-</head>
-<body>
-  <div class="nav">
-    <button onclick="location.href='index.html'">Home</button>
-    <button onclick="location.href='report.html'">Report Issue</button>
-  </div>
-  <h1 class="main-heading"><span id="typing-text">FixMyTown</span></h1>
-  <div id="map"></div>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>FixMyTown</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBKtjmNmwyfEKWLGORdWj8wzFAcIYZGyaw
+&callback=initMap" defer></script>
+    <script src="firebase-config.js" type="module" defer></script>
+    <script src="js/index.js" type="module" defer></script>
+  </head>
+  <body>
+    <div class="nav">
+      <button onclick="location.href='index.html'">Home</button>
+      <button onclick="location.href='report.html'">Report Issue</button>
+    </div>
+    <h1 class="main-heading"><span id="typing-text">FixMyTown</span></h1>
+    <div id="map"></div>
+  </body>
 </html>
