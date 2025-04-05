@@ -1,65 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Report Issue - FixMyTown</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Report an Issue</title>
+  <link rel="stylesheet" href="report-style.css" />
+  <script src="firebase-config.js" defer></script>
+  <script src="js/report.js" defer></script>
 </head>
 <body>
+  <div class="nav">
+    <button onclick="location.href='index.html'">Home</button>
+    <button onclick="location.href='report.html'">Report Issue</button>
+  </div>
 
-    <!-- Navigation Bar -->
-    <nav class="navbar">
-        <div class="nav-logo">FixMyTown</div>
-        <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="report.html">Report Issue</a></li>
-        </ul>
-    </nav>
+  <form id="reportForm">
+    <h2>Report an Issue</h2>
 
-    <!-- Report Form Container -->
-    <div class="report-container">
-        <h1>Report an Issue</h1>
-        <form id="reportForm">
-            <label for="issueType">Issue Type:</label>
-            <select id="issueType" required>
-                <option value="">Select Issue</option>
-                <option value="Pothole">Pothole</option>
-                <option value="Garbage">Garbage</option>
-                <option value="Street Light">Street Light</option>
-            </select>
+    <label for="issueType">Issue Type:</label>
+    <select id="issueType" required>
+      <option value="">Select Issue</option>
+      <option value="Pothole">Pothole</option>
+      <option value="Garbage">Garbage</option>
+      <option value="Streetlight">Streetlight</option>
+    </select>
 
-            <label for="description">Description:</label>
-            <textarea id="description" rows="3" required></textarea>
+    <label for="description">Description:</label>
+    <textarea id="description" required></textarea>
 
-            <label for="image">Upload Image:</label>
-            <input type="file" id="image" accept="image/*" required />
+    <label for="image">Upload Image:</label>
+    <input type="file" id="image" required/>
 
-            <label for="location">Location:</label>
-            <input type="text" id="location" placeholder="Enter coordinates or area" required />
-
-            <button type="button" onclick="getLocation()">📍 Detect My Location</button>
-
-            <button type="submit">Submit Issue</button>
-        </form>
+    <label for="location">Location:</label>
+    <input type="text" id="location" placeholder="Enter coordinates or area" required/>
+    <div class="detect-location">
+      <a href="#">📍 Detect My Location</a>
     </div>
 
-    <script>
-        // Dummy location function (replace with actual logic)
-        function getLocation() {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(function(position) {
-                    const lat = position.coords.latitude.toFixed(5);
-                    const lng = position.coords.longitude.toFixed(5);
-                    document.getElementById("location").value = `${lat}, ${lng}`;
-                });
-            } else {
-                alert("Geolocation is not supported by your browser.");
-            }
-        }
-    </script>
-
+    <button type="submit">Submit Issue</button>
+  </form>
 </body>
 </html>
-
 
