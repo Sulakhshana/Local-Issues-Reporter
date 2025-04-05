@@ -67,8 +67,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Create a popup with issue details
     const popup = new mapboxgl.Popup({ offset: 25 }).setHTML(`
-      <div style="max-width: 200px;">
-        <img src="${issue.imageUrl}" style="width:100%; border-radius:6px; margin-bottom:6px;" />
+      <div class="map-popup" style="max-width:200px;">
+        <img src="${issue.imageUrl}" alt="${issue.issueType}" />
         <strong>${issue.issueType}</strong><br>
         <small>${issue.description}</small><br>
         <span>Status: <b style="color:${getStatusColor(issue.status)}">${issue.status}</b></span><br>
