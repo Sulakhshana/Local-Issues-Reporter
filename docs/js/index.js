@@ -63,4 +63,3 @@ function parseCoords(coordStr) {
   return isNaN(lat) || isNaN(lng) ? null : { lat, lng };
 }
 
-
