@@ -3,43 +3,41 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Report an Issue - FixMyTown</title>
+  <title>Report an Issue</title>
   <link rel="stylesheet" href="style.css" />
+  <script src="firebase-config.js" defer></script>
+  <script src="js/report.js" defer></script>
 </head>
 <body>
-
-  <div class="navbar">
-    <h1>FixMyTown</h1>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="report.html">Report Issue</a>
-    </nav>
+  <div class="nav">
+    <button onclick="location.href='index.html'">Home</button>
+    <button onclick="location.href='report.html'">Report Issue</button>
   </div>
 
-  <div id="report-form-container">
-    <h2>📝 Report an Issue</h2>
-
-    <label for="issueType">Issue Type</label>
-    <select id="issueType">
-      <option>Pothole</option>
-      <option>Garbage Dump</option>
-      <option>Streetlight Issue</option>
-      <option>Other</option>
+  <form id="reportForm">
+    <h2>Report an Issue</h2>
+    <label for="issueType">Issue Type:</label>
+    <select id="issueType" required>
+      <option value="">Select Issue</option>
+      <option value="Pothole">Pothole</option>
+      <option value="Garbage">Garbage</option>
+      <option value="Streetlight">Streetlight</option>
     </select>
 
-    <label for="description">Description</label>
-    <textarea id="description" placeholder="Briefly describe the issue..."></textarea>
+    <label for="description">Description:</label>
+    <textarea id="description" required></textarea>
 
-    <label for="uploadPhoto">Upload Photo</label>
-    <input type="file" id="uploadPhoto">
+    <label for="image">Upload Image:</label>
+    <input type="file" id="image" required/>
 
-    <label for="location">Location</label>
-    <input type="text" id="location" placeholder="Enter or allow location access">
-    <p class="detect-location">📍 <a href="#">Detect My Location</a></p>
+    <label for="location">Location:</label>
+    <input type="text" id="location" placeholder="Enter coordinates or area" required/>
+    <div class="detect-location">
+      <a href="#">📍 Detect My Location</a>
+    </div>
 
-    <button id="submitIssue">Submit Issue</button>
-  </div>
-
-  <script src="report.js"></script>
+    <button type="submit">Submit Issue</button>
+  </form>
 </body>
 </html>
+
