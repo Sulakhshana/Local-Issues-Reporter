@@ -120,6 +120,13 @@ body {
   box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
 }
 
+#map {
+  width: 100%;
+  height: 400px; /* or 500px, as you like */
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
 h2 {
   font-size: 2rem;
   color: #1e3a8a;
