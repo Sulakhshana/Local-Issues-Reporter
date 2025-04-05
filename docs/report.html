@@ -3,52 +3,36 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Report Issue - FixMyTown</title>
-
+  <title>Report an Issue - FixMyTown</title>
   <link rel="stylesheet" href="report-style.css" />
+  <script src="js/report.js" defer></script>
 </head>
 <body>
-
   <nav class="navbar">
     <div class="nav-logo">FixMyTown</div>
     <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
-      <li><a href="report.html" class="active">Report Issue</a></li>
     </ul>
   </nav>
 
-  <main class="form-container">
-    <h1 class="form-title">📢 Report a Civic Issue</h1>
+  <main class="report-form-section">
+    <h1>Report an Issue</h1>
+    <form id="reportForm">
+      <label>Issue Type:</label>
+      <input type="text" id="issueType" placeholder="E.g. Pothole, Garbage" required />
 
-    <form id="reportForm" class="issue-form">
+      <label>Description:</label>
+      <textarea id="description" placeholder="Describe the issue" required></textarea>
 
-      <label for="issueType">Issue Type</label>
-      <select id="issueType" required>
-        <option value="">Select an issue</option>
-        <option value="Garbage">Garbage</option>
-        <option value="Pothole">Pothole</option>
-        <option value="Streetlight">Streetlight</option>
-        <option value="Water Leakage">Water Leakage</option>
-        <option value="Other">Other</option>
-      </select>
+      <label>Location (latitude,longitude):</label>
+      <input type="text" id="location" placeholder="E.g. 28.6139,77.2090" required />
+      <button id="detectLocationBtn">📍 Detect My Location</button>
 
-      <label for="description">Description</label>
-      <textarea id="description" rows="4" placeholder="Describe the issue..." required></textarea>
-
-      <label for="location">Location (latitude, longitude)</label>
-      <div class="location-row">
-        <input type="text" id="location" placeholder="Detect or enter manually" required />
-        <button id="detectLocationBtn">📍 Detect</button>
-      </div>
-
-      <label for="image">Upload Image</label>
+      <label>Upload Image:</label>
       <input type="file" id="image" accept="image/*" required />
 
-      <button type="submit" class="submit-btn">🚀 Submit Report</button>
+      <button type="submit">Submit</button>
     </form>
   </main>
-
-  <script src="js/report.js" defer></script>
 </body>
 </html>
-
