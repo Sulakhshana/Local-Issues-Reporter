@@ -3,17 +3,16 @@ import { getStorage } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-
 import { getFirestore } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-firestore.js";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyD0...",
-  authDomain: "civic-issue-reporter.firebaseapp.com",
-  projectId: "civic-issue-reporter",
-  storageBucket: "civic-issue-reporter.appspot.com",
-  messagingSenderId: "415273797037",
-  appId: "1:415273797037:web:304c4d1625c32d3282e6fd",
-  measurementId: "G-W1TXWGVB3C"
+  apiKey: "AIzaSyD_lajqIE4NSUaN4sGYCWLPrKJiT0nDHg0",
+  authDomain: "fixmycity-1e70e.firebaseapp.com",
+  projectId: "fixmycity-1e70e",
+  storageBucket: "fixmycity-1e70e.firebasestorage.app",
+  messagingSenderId: "658505949766",
+  appId: "1:658505949766:web:06c3f379f9b52888426047"
 };
 
 const app = initializeApp(firebaseConfig);
 const storage = getStorage(app);
 const db = getFirestore(app);
 
-export { storage, db };
+export { storage, db, firebaseConfig }; 
