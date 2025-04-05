@@ -29,13 +29,25 @@ body {
 }
 
 /* Map styling */
+/* Map styling */
 #map {
   width: 100%;
   height: 400px; /* Set height for the map */
+  border-radius: 10px;
 }
 
+/* Marker styling */
 .marker {
   width: 20px;
   height: 20px;
+  background-color: red; /* Default color */
+  border-radius: 50%;
+  border: 2px solid white;
+  cursor: pointer;
 }
 
+/* Popup content styling */
+.map-popup img {
+  width: 100%;
+  border-radius: 6px;
+}
