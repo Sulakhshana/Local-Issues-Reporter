@@ -1,83 +1,73 @@
-// index.js
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
 import {
   getFirestore,
   collection,
-  getDocs,
-  updateDoc,
-  doc,
-  increment
+  getDocs
 } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
 
 import { firebaseConfig } from "../firebase-config.js";
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// 🔹 Mapbox Setup
-mapboxgl.accessToken = 'pk.eyJ1Ijoic3VsYWtoc2hhbmEyNSIsImEiOiJjbXYxM3ZrbGowM3ZjM3BtNmdtaWk3M2R0In0.BZ-8LDI7UmDAORqWYiU9TA';
+// 🔹 Load Google Map and display issue markers
+window.initMap = async function () {
+  // Default to Delhi if location access fails
+  const defaultCenter = { lat: 28.6448, lng: 77.216721 };
 
-navigator.geolocation.getCurrentPosition(successLocation, errorLocation, { enableHighAccuracy: true });
-
-function successLocation(position) {
-  setupMap([position.coords.longitude, position.coords.latitude]);
-}
-
-function errorLocation() {
-  setupMap([77.216721, 28.6448]); // Default to Delhi
-}
-
-function setupMap(center) {
-  const map = new mapboxgl.Map({
-    container: 'map',
-    style: 'mapbox://styles/mapbox/streets-v11',
-    center: center,
-    zoom: 12
+  const map = new google.maps.Map(document.getElementById("map"), {
+    zoom: 12,
+    center: defaultCenter
   });
 
-  loadMarkers(map);
-}
+  // Try to get current location
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const userLocation = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude,
+        };
+        map.setCenter(userLocation);
+      },
+      () => {
+        console.warn("Geolocation failed or denied. Using default location.");
+      }
+    );
+  }
 
-async function loadMarkers(map) {
+  // Fetch issues from Firestore
   const querySnapshot = await getDocs(collection(db, "issues"));
   querySnapshot.forEach((docSnap) => {
     const data = docSnap.data();
     const [lat, lng] = data.location.split(',').map(Number);
 
-    const popupContent = `
-      <div class="text-sm">
-        <img src="${data.imageUrl}" alt="Issue Image" class="w-full h-32 object-cover rounded mb-2" />
+    const contentString = `
+      <div style="max-width: 250px;">
+        <img src="${data.imageUrl}" style="width:100%; height:120px; object-fit:cover; border-radius:5px; margin-bottom:8px;" />
         <p><strong>Type:</strong> ${data.issueType}</p>
         <p><strong>Description:</strong> ${data.description}</p>
-        <p><strong>Status:</strong> <span class="px-2 py-1 rounded text-white text-xs ${data.status === 'Resolved' ? 'bg-green-600' : 'bg-yellow-500'}">${data.status}</span></p>
-        <p><strong>Upvotes:</strong> <span id="upvote-${docSnap.id}">${data.upvotes || 0}</span></p>
-        <button class="mt-1 px-2 py-1 text-xs bg-blue-600 text-white rounded hover:bg-blue-700" onclick="upvote('${docSnap.id}')">👍 Upvote</button>
+        <p><strong>Status:</strong> 
+          <span style="padding: 3px 6px; border-radius: 4px; color: white; background: ${data.status === 'Resolved' ? '#28a745' : '#ffc107'};">
+            ${data.status}
+          </span>
+        </p>
+        <p><strong>Upvotes:</strong> ${data.upvotes || 0}</p>
       </div>
     `;
 
-    const marker = new mapboxgl.Marker({ color: "#e63946" })
-      .setLngLat([lng, lat])
-      .setPopup(new mapboxgl.Popup().setHTML(popupContent))
-      .addTo(map);
+    const marker = new google.maps.Marker({
+      position: { lat, lng },
+      map: map,
+      icon: "https://maps.google.com/mapfiles/ms/icons/red-dot.png"
+    });
+
+    const infowindow = new google.maps.InfoWindow({
+      content: contentString,
+    });
+
+    marker.addListener("click", () => {
+      infowindow.open(map, marker);
+    });
   });
-}
-
-// 🔹 Upvote Logic
-window.upvote = async function (id) {
-  const voted = localStorage.getItem(`voted-${id}`);
-  if (voted) {
-    alert("You have already upvoted this issue!");
-    return;
-  }
-
-  const issueRef = doc(db, "issues", id);
-  await updateDoc(issueRef, {
-    upvotes: increment(1)
-  });
-
-  const upvoteElem = document.getElementById(`upvote-${id}`);
-  if (upvoteElem) {
-    upvoteElem.textContent = parseInt(upvoteElem.textContent) + 1;
-  }
-
-  localStorage.setItem(`voted-${id}`, "true");
 };
+
