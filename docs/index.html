@@ -5,13 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>FixMyTown</title>
   <link rel="stylesheet" href="style.css" />
-
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBKtjmNmwyfEKWLGORdWj8wzFAcIYZGyaw&callback=initMap" defer></script>
-
-  <script src="firebase-config.js" defer></script>
-  <script src="js/index.js" defer type="module"></script>
 </head>
-
 <body>
 
   <!-- Navigation Bar -->
@@ -23,9 +17,9 @@
     </ul>
   </nav>
 
-  <!-- Hero Section with Glassmorphic Effect -->
+  <!-- Hero Section -->
   <header class="hero-section">
-    <h1 class="site-title">FixMyTown</h1>
+    <h1 class="site-title"><span class="typewrite" data-text="FixMyTown"></span></h1>
   </header>
 
   <!-- Main Content -->
@@ -38,8 +32,27 @@
   <section class="map-section">
     <h2>🌍 Real-Time Map</h2>
     <p>View all active civic problems on a live map.</p>
-    <div id="map"></div>
+    <!-- Your map iframe or integration will go here -->
   </section>
 
+  <!-- Typing Effect Script -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const el = document.querySelector(".typewrite");
+      const text = el.getAttribute("data-text");
+      let i = 0;
+
+      function type() {
+        if (i < text.length) {
+          el.textContent += text.charAt(i);
+          i++;
+          setTimeout(type, 150);
+        }
+      }
+
+      el.textContent = "";
+      type();
+    });
+  </script>
 </body>
 </html>
