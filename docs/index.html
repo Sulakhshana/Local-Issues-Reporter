@@ -5,10 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>FixMyTown</title>
   <link rel="stylesheet" href="style.css" />
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBKtjmNmwyfEKWLGORdWj8wzFAcIYZGyaw&callback=initMap" defer></script>
+  <script src="firebase-config.js" defer></script>
+  <script src="js/index.js" defer></script>
 </head>
 <body>
 
-  <!-- Navigation Bar -->
   <nav class="navbar">
     <div class="nav-logo">FixMyTown</div>
     <ul class="nav-links">
@@ -17,42 +19,19 @@
     </ul>
   </nav>
 
-  <!-- Hero Section -->
   <header class="hero-section">
-    <h1 class="site-title"><span class="typewrite" data-text="FixMyTown"></span></h1>
+    <h1 class="site-title"><span id="typing-text">FixMyTown</span></h1>
   </header>
 
-  <!-- Main Content -->
   <section class="main-content">
     <h2>Empowering Communities</h2>
     <p>Report, view, and track local civic issues with ease. Be the change you wish to see!</p>
   </section>
 
-  <!-- Map Section -->
   <section class="map-section">
     <h2>🌍 Real-Time Map</h2>
-    <p>View all active civic problems on a live map.</p>
-    <!-- Your map iframe or integration will go here -->
+    <div id="map"></div>
   </section>
 
-  <!-- Typing Effect Script -->
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const el = document.querySelector(".typewrite");
-      const text = el.getAttribute("data-text");
-      let i = 0;
-
-      function type() {
-        if (i < text.length) {
-          el.textContent += text.charAt(i);
-          i++;
-          setTimeout(type, 150);
-        }
-      }
-
-      el.textContent = "";
-      type();
-    });
-  </script>
 </body>
 </html>
