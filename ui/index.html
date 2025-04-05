@@ -1,65 +1,31 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Fix My City - Civic Reporter</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css" />
-  <style>
-    body {
-      font-family: 'Inter', sans-serif;
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Local Issue Reporter</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+  <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css"/>
 </head>
-
-<body class="bg-gradient-to-br from-blue-50 via-purple-100 to-pink-50 text-gray-800 overflow-x-hidden">
-
-  <!-- Background Blobs -->
-  <div class="absolute top-0 -left-20 w-[500px] h-[500px] bg-purple-300 rounded-full opacity-30 blur-3xl z-0 animate-fade-in-slow"></div>
-  <div class="absolute bottom-0 -right-20 w-[500px] h-[500px] bg-pink-300 rounded-full opacity-30 blur-3xl z-0 animate-fade-in-slow"></div>
+<body class="bg-gray-100 text-gray-800">
 
   <!-- Header -->
-  <header class="relative z-10 flex justify-between items-center px-8 py-5 shadow bg-white/60 backdrop-blur-lg rounded-b-xl">
-    <h1 class="text-2xl font-bold text-blue-700">📍 Fix My City</h1>
-    <a href="report.html" class="bg-blue-600 text-white px-5 py-2 rounded-full hover:bg-blue-700 transition-all shadow-lg">Report an Issue</a>
+  <header class="bg-blue-700 text-white shadow-md">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+      <h1 class="text-xl font-bold">Crowdsourced Civic Issue Reporter</h1>
+      <nav>
+        <a href="index.html" class="px-4 py-2 text-white hover:underline">Home</a>
+        <a href="report.html" class="px-4 py-2 text-white hover:underline">Report Issue</a>
+      </nav>
+    </div>
   </header>
 
   <!-- Hero Section -->
-  <section class="relative z-10 text-center px-6 py-20">
-    <h2 class="text-5xl md:text-6xl font-extrabold text-gray-800 leading-tight animate-slide-up">Be the Voice of Your Street</h2>
-    <p class="text-lg mt-4 text-gray-600 max-w-xl mx-auto">Report potholes, outages, garbage dumps, and track how your neighborhood gets better – together.</p>
-
-    <!-- Animated Illustration -->
-    <div class="mt-12">
-      <img src="https://cdn3d.iconscout.com/3d/premium/thumb/street-cleaning-8758597-7119985.png" alt="City Cleanup" class="mx-auto w-72 md:w-96 animate-float" />
-    </div>
-  </section>
-
-  <!-- How It Works Section -->
-  <section class="relative z-10 px-6 py-20 bg-white">
-    <h3 class="text-3xl font-bold text-center mb-12">📌 How It Works</h3>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-10 text-center">
-      <!-- Card 1 -->
-      <div class="bg-white shadow-xl rounded-xl p-6 transition hover:scale-105 backdrop-blur-md glassmorphism">
-        <img src="https://www.svgrepo.com/show/377993/report.svg" class="w-16 h-16 mx-auto mb-4" />
-        <h4 class="text-xl font-semibold">1. Report</h4>
-        <p class="text-gray-600 mt-2">Upload a photo, location, and issue type. Quick and easy!</p>
-      </div>
-      <!-- Card 2 -->
-      <div class="bg-white shadow-xl rounded-xl p-6 transition hover:scale-105 backdrop-blur-md glassmorphism">
-        <img src="https://www.svgrepo.com/show/21045/location-pin.svg" class="w-16 h-16 mx-auto mb-4" />
-        <h4 class="text-xl font-semibold">2. Locate</h4>
-        <p class="text-gray-600 mt-2">Pin the issue on a map – your neighbors can now see it!</p>
-      </div>
-      <!-- Card 3 -->
-      <div class="bg-white shadow-xl rounded-xl p-6 transition hover:scale-105 backdrop-blur-md glassmorphism">
-        <img src="https://www.svgrepo.com/show/354409/thumb-up-like.svg" class="w-16 h-16 mx-auto mb-4" />
-        <h4 class="text-xl font-semibold">3. Upvote</h4>
-        <p class="text-gray-600 mt-2">Issues with more votes get higher visibility & priority.</p>
-      </div>
+  <section class="bg-gradient-to-r from-blue-500 to-purple-500 text-white py-20 text-center">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="text-4xl font-bold mb-4">Empowering Communities</h2>
+      <p class="text-lg">Report, view, and track local civic issues with ease. Be the change you wish to see!</p>
     </div>
   </section>
 
@@ -67,14 +33,17 @@
   <section class="relative z-10 px-6 py-20 bg-gradient-to-r from-blue-100 to-purple-100 text-center">
     <h3 class="text-3xl font-bold mb-6">🌍 Real-Time Map</h3>
     <p class="mb-8 text-gray-700">View all active civic problems on a live map</p>
-    <div class="w-full h-80 bg-gray-200 rounded-xl shadow-lg flex items-center justify-center text-gray-500">
-      <span>Live Map Integration Coming 🔜</span>
-    </div>
+    <div id="map" class="w-full h-96 rounded-xl shadow-lg"></div>
   </section>
 
   <!-- Footer -->
-  <footer class="relative z-10 text-center text-sm py-6 text-gray-600 bg-white mt-10">
-    &copy; 2025 Fix My City | Built with 💙 by Sulakhshana
+  <footer class="bg-gray-900 text-white text-center py-6">
+    <p>&copy; 2025 Local Issue Reporter. Made with ❤️ by Sulakhshana</p>
   </footer>
+
+  <!-- Scripts -->
+  <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
+  <script type="module" src="js/index.js"></script>
 </body>
 </html>
+
